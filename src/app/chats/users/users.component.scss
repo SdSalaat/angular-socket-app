@@ -1,8 +1,8 @@
 @import "../../auth/login/login.component";
 
 
-.wrap-login100[_ngcontent-c1] {
-  width: 960px;
+.wrap-login100 {
+  width: 100%;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -11,10 +11,9 @@
   justify-content: space-between;
   padding: 15px 50px 15px 50px;
 }
-
 .fixed-height {
-  //max-height: 350px;
-  height: 465px;
+  max-height: 465px;
+  //height: 465px;
   overflow: scroll;
 }
 
@@ -95,17 +94,22 @@
   padding-left: 0 !important;
 }
 
-.wrap-login100[_ngcontent-c2] {
-  width: 960px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 50px 50px 33px 60px;
-}
-
 .display-content {
   display: contents;
+}
+
+@media (max-width: 565px) {
+  .display-content-1{
+    display: block;
+  }
+  .offset-9 {
+    margin-left: auto !important;
+  }
+  .btn {
+    display: contents;
+  }
+}
+
+.cursor{
+  cursor: pointer;
 }
