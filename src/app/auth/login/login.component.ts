@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {AuthRouterService} from '../auth-router.service';
 import {Socket} from 'ngx-socket-io';
 import {SharedService} from '../../services/shared/shared.service';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     public router: Router,
     private socket: Socket,
     private authRoute: AuthRouterService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private ngxService: NgxUiLoaderService
   ) {
   }
 
@@ -95,6 +97,7 @@ export class LoginComponent implements OnInit {
           return user._id !== activeUser._id;
         });
         this.sharedService.setUsers(filteredUsers);
+        this.ngxService.stop();
         // noinspection JSIgnoredPromiseFromCall
         this.router.navigate(['/chats/users']);
       }
@@ -102,6 +105,7 @@ export class LoginComponent implements OnInit {
     const activeUSer = JSON.parse(localStorage.getItem('activeUser'));
     const active = JSON.parse(localStorage.getItem('active'));
     if (activeUSer !== null) {
+      this.ngxService.start('1');
       if (Object.keys(activeUSer).length > 0 && active.active === true) {
         this.socket.emit('validate-user');
       }
@@ -109,6 +113,7 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin() {
+    this.ngxService.start();
     this.authRoute.userLogin(this.userDetails)
       .subscribe(data => {
         localStorage.setItem('activeUser', JSON.stringify(data.data));

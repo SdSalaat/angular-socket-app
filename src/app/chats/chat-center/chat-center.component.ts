@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild, AfterViewChecked} from '@angular/core';
 import {ChatsRouterService} from '../chats-router.service';
 import {Socket} from 'ngx-socket-io';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-chat-center',
@@ -16,10 +17,12 @@ export class ChatCenterComponent implements OnInit {
   activeUser = JSON.parse(localStorage.getItem('activeUser'));
   constructor(
     private chatService: ChatsRouterService,
-    private socket: Socket
+    private socket: Socket,
+    private ngxService: NgxUiLoaderService
   ) { }
 
   ngOnInit() {
+    this.ngxService.start('1')
     this.scrollToBottom();
     this.socket.on('rec-message', (data) => {
       this.message  = '';
@@ -38,7 +41,6 @@ export class ChatCenterComponent implements OnInit {
 
   @Input('selectedUser')
   set selectedUser(data: any) {
-    console.log(data);
     if (Object.keys(data).length > 0) {
       this.user = data;
       this.activeUser = JSON.parse(localStorage.getItem('activeUser'));
