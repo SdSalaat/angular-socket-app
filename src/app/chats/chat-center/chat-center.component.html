@@ -1,0 +1,40 @@
+<div *ngIf="(user | json) === ({} | json)">
+  <div class="margin-setter" align="center"><b>Select User To Start Chatting</b></div>
+</div>
+<div *ngIf="(user | json) != ({} | json)">
+  <div align="center"><b>{{user.name}}</b></div>
+  <br>
+  <div #displayWindow class="fixed-height-1">
+    <div class="display-window" *ngFor="let chat of chats">
+
+      <div class="message-display receiver-display" *ngIf="chat.senderID !== activeUser._id">
+        <div class="display-block">
+          <div class="receiver-display">
+            <span class="receiver"><small>{{chat.message}} </small></span>
+            <div class="display-time receiver-display-time">
+              <small class="receiver-display">sent: 20:08</small>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="message-display sender-display" *ngIf="chat.senderID === activeUser._id">
+        <div class="display-block">
+          <div class="sender-display">
+            <span class="sender"><small>{{chat.message}} </small></span>
+            <div class="display-time">
+              <small class="sender-display">sent: 20:08</small>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="displayFlex">
+
+    <input class="input80" name="message" [(ngModel)]="message" placeholder="Enter Message" type="text">
+    <button class="login20-form-btn" [disabled]="message.length === 0" (click)="sendMessage()"> Send</button>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="wrap-login100">
+  <div class="row display-content">
+    <div class="col-md-2 offset-10 margin-setter-1"><div class="float-right"> <button (click)="logOutUser()" class="btn btn-outline-danger">Log out</button></div></div>
+  </div>
+  <br>
+  <div class="row width100">
+    <div class="col-md-4">
+      <div align="center"> <b>Users List</b></div>
+      <br>
+      <ul class="list-group list-group-flush fixed-height">
+        <li *ngFor="let user of users" (click)="selectUser(user)" class="list-group-item"> {{user.name}} <span class="float-right"><span *ngIf="user.isActive" class="activator"><i class="fa fa-circle"></i></span> &nbsp; <i class="fa fa-envelope"></i></span></li>
+        <!--<li  class="list-group-item"> Muhammad Junaid <span class="float-right"><span class="activator"><i class="fa fa-circle"></i></span> &nbsp; <i class="fa fa-envelope"></i></span></li>-->
+        <!--<li  class="list-group-item"> Abdul Samad <span class="float-right"><span class="activator"><i class="fa fa-circle"></i></span> &nbsp; <i class="fa fa-envelope"></i></span></li>-->
+        <!--<li  class="list-group-item"> Ali Akber <span class="float-right"><span class="activator"><i class="fa fa-circle"></i></span> &nbsp; <i class="fa fa-envelope"></i></span></li>-->
+        <!--<li  class="list-group-item"> Muhammad Saboor Awan <span class="float-right"><span class="activator"><i class="fa fa-circle"></i></span> &nbsp; <i class="fa fa-envelope"></i></span></li>-->
+      </ul>
+    </div>
+    <div class="col-md-8 border border-radius">
+      <app-chat-center [selectedUser]="user"></app-chat-center>
+    </div>
+  </div>
+</div>
