@@ -22,7 +22,7 @@ export class ChatCenterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ngxService.start('1')
+    // this.ngxService.start('1')
     this.scrollToBottom();
     this.socket.on('rec-message', (data) => {
       this.message  = '';

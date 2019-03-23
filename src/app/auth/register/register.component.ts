@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import jQuery from 'jQuery';
+import jQuery from 'jquery';
 import {Router} from '@angular/router';
 import {AuthRouterService} from '../auth-router.service';
-import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +19,6 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private authRoute: AuthRouterService,
-    private ngxService: NgxUiLoaderService
   ) {
   }
 
@@ -93,10 +91,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    this.ngxService.start('1');
+    // this.ngxService.start('1');
     this.authRoute.registerUser(this.userDetails)
       .subscribe(data => {
-        this.ngxService.stop();
+        // this.ngxService.stop();
         this.route();
       });
   }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import jQuery from 'jQuery';
+import jQuery from 'jquery';
 import {Router} from '@angular/router';
 import {AuthRouterService} from '../auth-router.service';
 import {Socket} from 'ngx-socket-io';
@@ -97,23 +97,24 @@ export class LoginComponent implements OnInit {
           return user._id !== activeUser._id;
         });
         this.sharedService.setUsers(filteredUsers);
-        this.ngxService.stop();
+        // this.ngxService.stopAll();
+        this.ngxService.stop('login');
         // noinspection JSIgnoredPromiseFromCall
         this.router.navigate(['/chats/users']);
       }
     });
     const activeUSer = JSON.parse(localStorage.getItem('activeUser'));
     const active = JSON.parse(localStorage.getItem('active'));
-    if (activeUSer !== null) {
-      this.ngxService.start('1');
+    if (activeUSer !== null && active !== null) {
       if (Object.keys(activeUSer).length > 0 && active.active === true) {
+        this.ngxService.start();
         this.socket.emit('validate-user');
       }
     }
   }
 
   userLogin() {
-    this.ngxService.start();
+    this.ngxService.start('login');
     this.authRoute.userLogin(this.userDetails)
       .subscribe(data => {
         localStorage.setItem('activeUser', JSON.stringify(data.data));
