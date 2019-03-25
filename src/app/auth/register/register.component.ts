@@ -6,7 +6,7 @@ import {AuthRouterService} from '../auth-router.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   userDetails = {
@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
     phone: '',
     password: '',
   };
+  isError = false;
+  errorMessage = '';
   constructor(
     private router: Router,
     private authRoute: AuthRouterService,
@@ -33,7 +35,7 @@ export class RegisterComponent implements OnInit {
         let check = true;
 
         for (let i = 0; i < inputs.length; i++) {
-          if (validate(inputs[i], i) == false) {
+          if (validate(inputs[i], i) === false) {
             showValidate(inputs[i]);
             check = false;
           }
@@ -56,14 +58,18 @@ export class RegisterComponent implements OnInit {
       });
 
       function validate(input, index) {
-        if ($(input).attr('name') == 'email') {
-          if ($(input).val().trim().match(/^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(]?)$/) == null) {
+        if ($(input).attr('name') === 'email') {
+          if ($(input)
+            .val()
+            .trim()
+            .match(/^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(]?)$/)
+            == null) {
             return false;
           }
-        } else if ($(input).attr('type') == 'confirmPass' || $(input).attr('name') == 'confirmPass') {
+        } else if ($(input).attr('type') === 'confirmPass' || $(input).attr('name') === 'confirmPass') {
           return $(input).val() === $(inputs[index - 1]).val();
         } else {
-          if ($(input).val().trim() == '') {
+          if ($(input).val().trim() === '') {
             return false;
           }
         }
@@ -91,11 +97,17 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    // this.ngxService.start('1');
     this.authRoute.registerUser(this.userDetails)
-      .subscribe(data => {
-        // this.ngxService.stop();
+      .subscribe(() => {
+        this.isError = false;
         this.route();
+      }, e => {
+        this.isError = true;
+        if (e.error.code === 11000) {
+          this.errorMessage = `Email Already Exist. Go back Login Instead`;
+        } else {
+          this.errorMessage = 'Seems Like Your Internet is not working';
+        }
       });
   }
 

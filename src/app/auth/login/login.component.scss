@@ -168,7 +168,7 @@ iframe {
 }
 
 .login100-pic img {
-  max-width: 100%;
+  max-width: 95%;
 }
 
 
@@ -430,3 +430,14 @@ iframe {
     opacity: 1;
   }
 }
+
+
+.error-red {
+  font-size: 15px;
+  padding: 10px 0;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  background-color: #f8d7da;
+}
+

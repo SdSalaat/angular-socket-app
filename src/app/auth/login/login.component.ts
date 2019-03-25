@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  isError = false;
+  errorMessage = '';
 
   constructor(
     public router: Router,
@@ -117,9 +119,18 @@ export class LoginComponent implements OnInit {
     this.ngxService.start('login');
     this.authRoute.userLogin(this.userDetails)
       .subscribe(data => {
+        this.isError = false;
         localStorage.setItem('activeUser', JSON.stringify(data.data));
         localStorage.setItem('active', JSON.stringify({active: true}));
         this.socket.emit('validate-user');
+      }, (e) => {
+        this.ngxService.stop('login');
+        this.isError = true;
+        if (e.error.code === 403) {
+          this.errorMessage = 'Email Or Password Incorrect.';
+        } else {
+          this.errorMessage = 'Seems Like Your Internet is not working';
+        }
       });
   }
 

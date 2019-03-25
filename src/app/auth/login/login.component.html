@@ -8,7 +8,10 @@
 					<span class="login100-form-title">
 						Member Login
 					</span>
-
+    <div *ngIf="isError" class="error-red  card container">
+      {{errorMessage}}
+    </div>
+    <br>
     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
       <input [(ngModel)]="userDetails.email" class="input100 form-control" name="email" placeholder="Email" type="text">
       <span class="focus-input100"></span>
