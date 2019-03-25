@@ -1,3 +1,4 @@
+<ngx-ui-loader fgsType="three-strings" text="Please Wait" fgsColor="#c850c0"></ngx-ui-loader>
 <div class="wrap-login100">
   <div class="login100-pic js-tilt" data-tilt>
     <img src="../../../assets/images/img-01.png" alt="IMG">
@@ -9,7 +10,7 @@
 					</span>
 
     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-      <input [(ngModel)]="userDetails.email" class="input100" name="email" placeholder="Email" type="text">
+      <input [(ngModel)]="userDetails.email" class="input100 form-control" name="email" placeholder="Email" type="text">
       <span class="focus-input100"></span>
       <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -17,7 +18,7 @@
     </div>
 
     <div class="wrap-input100 validate-input" data-validate="Password is required">
-      <input class="input100" type="password" [(ngModel)]="userDetails.password" name="pass" placeholder="Password">
+      <input class="input100 form-control" type="password" [(ngModel)]="userDetails.password" name="pass" placeholder="Password">
       <span class="focus-input100"></span>
       <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>

@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {LoginComponent} from "./auth/login/login.component";
-import {SharedModule} from "./services/shared.module";
-import {FormsModule} from "@angular/forms";
+import {LoginComponent} from './auth/login/login.component';
+import {SharedModule} from './services/shared.module';
+import {FormsModule} from '@angular/forms';
+import {NgxUiLoaderModule} from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {FormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     FormsModule,
+    NgxUiLoaderModule,
     SharedModule,
     AppRoutingModule
   ],

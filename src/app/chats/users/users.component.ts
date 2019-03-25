@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
         localStorage.setItem('activeUser', JSON.stringify({}));
         localStorage.setItem('active', JSON.stringify({active: false}));
         // noinspection JSIgnoredPromiseFromCall
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       }
     })
   }
