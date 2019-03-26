@@ -126,8 +126,12 @@ export class LoginComponent implements OnInit {
       }, (e) => {
         this.ngxService.stop();
         this.isError = true;
-        if (e.error.code === 403) {
-          this.errorMessage = 'Email Or Password Incorrect.';
+        if(e.error !== null){
+          if (e.error.code === 403) {
+            this.errorMessage = 'Email Or Password Incorrect.';
+          } else {
+            this.errorMessage = 'Seems Like Your Internet is not working';
+          }
         } else {
           this.errorMessage = 'Seems Like Your Internet is not working';
         }

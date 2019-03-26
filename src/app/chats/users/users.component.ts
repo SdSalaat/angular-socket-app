@@ -27,6 +27,14 @@ export class UsersComponent implements OnInit {
     if (this.sharedService.getUsers().length > 0) {
       this.users = this.sharedService.getUsers();
     }
+    this.socket.on('all-users', (users) => {
+      const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+      const filteredUsers = users.filter((user) => {
+        return user._id !== activeUser._id;
+      });
+      this.sharedService.setUsers(filteredUsers);
+      this.users = filteredUsers;
+    })
     this.socket.on('logged-out', (data) => {
       if (data) {
         localStorage.setItem('activeUser', JSON.stringify({}));
