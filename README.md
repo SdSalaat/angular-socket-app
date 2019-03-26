@@ -1,30 +1,45 @@
-# Live Demo
-https://angular-socket.000webhostapp.com/
+A Socket.io Chat Example Using Angular CLI
+==========================================
 
-# SocketAngular
+This repository contains client side code using `Angular CLI` Framework
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+## Live Demo
+Try live demo: [https://angular-socket.000webhostapp.com](https://angular-socket.000webhostapp.com)
 
-## Development server
+# Support this project
+- Star GitHub repository :star:
+- Create pull requests, submit bugs or suggest new features
+- Follow updates on  [Github](https://github.com/SdSalaat)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Recording1](https://user-images.githubusercontent.com/30148680/54999703-a88cf200-4ff2-11e9-9612-af24b4438a86.gif)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# RunningClient locally
+## Prerequisites
 
-## Build
+First, ensure you have the following installed:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. Git - Download and Install [Git](https://git-scm.com)
+2. Angular CLI - Install Command Line Interface for Angular [https://cli.angular.io/](https://cli.angular.io/)
 
-## Running unit tests
+After that, use `Git bash` to run all commands if you are on Windows platform.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Clone repository
 
-## Running end-to-end tests
+In order to start the project use:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+$ git clone https://github.com/SdSalaat/angular-socket-app.git
+$ cd angular-socket-app
+```
 
-## Further help
+## Run Angular Client
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Open other command line window and run following commands:
+
+```bash
+$ npm install
+$ ng serve
+```
+
+Now open your browser in following URL: [http://localhost:4200](http://localhost:4200/)
