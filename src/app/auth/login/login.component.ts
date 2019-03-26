@@ -99,32 +99,32 @@ export class LoginComponent implements OnInit {
           return user._id !== activeUser._id;
         });
         this.sharedService.setUsers(filteredUsers);
-        // this.ngxService.stopAll();
-        this.ngxService.stop('login');
-        // noinspection JSIgnoredPromiseFromCall
-        this.router.navigate(['/chats/users']);
       }
+      // noinspection JSIgnoredPromiseFromCall
+      this.router.navigate(['/chats/users']);
     });
+
+
     const activeUSer = JSON.parse(localStorage.getItem('activeUser'));
     const active = JSON.parse(localStorage.getItem('active'));
     if (activeUSer !== null && active !== null) {
       if (Object.keys(activeUSer).length > 0 && active.active === true) {
-        this.ngxService.start();
         this.socket.emit('validate-user');
       }
     }
   }
 
   userLogin() {
-    this.ngxService.start('login');
+    this.ngxService.start();
     this.authRoute.userLogin(this.userDetails)
       .subscribe(data => {
         this.isError = false;
         localStorage.setItem('activeUser', JSON.stringify(data.data));
         localStorage.setItem('active', JSON.stringify({active: true}));
+        this.ngxService.stop();
         this.socket.emit('validate-user');
       }, (e) => {
-        this.ngxService.stop('login');
+        this.ngxService.stop();
         this.isError = true;
         if (e.error.code === 403) {
           this.errorMessage = 'Email Or Password Incorrect.';

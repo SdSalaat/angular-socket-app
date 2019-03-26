@@ -8,7 +8,7 @@ import {NgxUiLoaderService} from 'ngx-ui-loader';
   templateUrl: './chat-center.component.html',
   styleUrls: ['./chat-center.component.scss']
 })
-export class ChatCenterComponent implements OnInit {
+export class ChatCenterComponent implements OnInit, AfterViewChecked {
   @ViewChild('displayWindow') myScrollContainer: ElementRef;
   user: any = {};
   message = '';

@@ -7,6 +7,14 @@
     <div class="col-md-5">
       <div align="center"> <b>Users List</b></div>
       <br>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="searchValue" (ngModelChange)="filterUsers()" class="input100 form-control" name="name" placeholder="Search . . ." type="text">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</span>
+      </div>
+      <br>
       <ul class="list-group list-group-flush fixed-height">
         <li *ngFor="let user of users" (click)="selectUser(user)" class="list-group-item cursor"> {{user.name}} <span class="float-right"><span *ngIf="user.isActive" class="activator"><i class="fa fa-circle"></i></span> &nbsp; <i class="fa fa-envelope"></i></span></li>
       </ul>
