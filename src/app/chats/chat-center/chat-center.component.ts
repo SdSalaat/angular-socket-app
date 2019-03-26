@@ -52,6 +52,8 @@ export class ChatCenterComponent implements OnInit, AfterViewChecked {
         .subscribe(messages => {
           if (messages.userChats.length > 0) {
             this.chats = messages.userChats;
+          } else {
+            this.chats = [];
           }
         });
     }
