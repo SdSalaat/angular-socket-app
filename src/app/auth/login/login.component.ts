@@ -115,18 +115,18 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin() {
-    this.ngxService.start();
+    this.ngxService.start('login');
     this.authRoute.userLogin(this.userDetails)
       .subscribe(data => {
         this.isError = false;
         localStorage.setItem('activeUser', JSON.stringify(data.data));
         localStorage.setItem('active', JSON.stringify({active: true}));
-        this.ngxService.stop();
+        this.ngxService.stop('login');
         this.socket.emit('validate-user');
       }, (e) => {
-        this.ngxService.stop();
+        this.ngxService.stop('login');
         this.isError = true;
-        if(e.error !== null){
+        if(e.error !== null) {
           if (e.error.code === 403) {
             this.errorMessage = 'Email Or Password Incorrect.';
           } else {
