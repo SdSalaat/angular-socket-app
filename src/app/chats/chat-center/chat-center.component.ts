@@ -65,6 +65,7 @@ export class ChatCenterComponent implements OnInit, AfterViewChecked {
     const payload = {
       senderID: this.activeUser._id,
       receiverID: this.user._id,
+      receiverEmail: this.user.email,
       message: this.message
     };
     this.socket.emit('sending-message', payload);

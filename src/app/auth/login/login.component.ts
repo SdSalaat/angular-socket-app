@@ -5,7 +5,7 @@ import {AuthRouterService} from '../auth-router.service';
 import {Socket} from 'ngx-socket-io';
 import {SharedService} from '../../services/shared/shared.service';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
-
+import {SwPush, SwUpdate} from '@angular/service-worker';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public router: Router,
+    private swUpdate: SwUpdate,
+    private swPush: SwPush,
     private socket: Socket,
     private authRoute: AuthRouterService,
     private sharedService: SharedService,
@@ -116,26 +118,58 @@ export class LoginComponent implements OnInit {
 
   userLogin() {
     this.ngxService.start('login');
-    this.authRoute.userLogin(this.userDetails)
-      .subscribe(data => {
-        this.isError = false;
-        localStorage.setItem('activeUser', JSON.stringify(data.data));
-        localStorage.setItem('active', JSON.stringify({active: true}));
-        this.ngxService.stop('login');
-        this.socket.emit('validate-user');
-      }, (e) => {
-        this.ngxService.stop('login');
-        this.isError = true;
-        if(e.error !== null) {
-          if (e.error.code === 403) {
-            this.errorMessage = 'Email Or Password Incorrect.';
+    // push Notify
+    if (this.swUpdate.isEnabled) {
+      this.swPush.requestSubscription({
+        serverPublicKey: 'BKZ7q9GnaavKPUheKO8TkBHgRglEA1sYZtjs05Y45scAoTRVMelVj5qTddqTfF48V_JcxYL1scOT_WA9GyWhAes'
+      })
+        .then(sub => {
+          console.log(sub);
+          this.userDetails.sub = sub;
+          this.authRoute.userLogin(this.userDetails)
+            .subscribe(data => {
+              localStorage.setItem('activeUser', JSON.stringify(data.data));
+              localStorage.setItem('active', JSON.stringify({active: true}));
+              this.ngxService.stop('login');
+              this.socket.emit('validate-user');
+            }, (e) => {
+              this.ngxService.stop('login');
+              this.isError = true;
+              if (e.error !== null) {
+                if (e.error.code === 403) {
+                  this.errorMessage = 'Email Or Password Incorrect.';
+                } else {
+                  this.errorMessage = 'Seems Like Your Internet is not working';
+                }
+              } else {
+                this.errorMessage = 'Seems Like Your Internet is not working';
+              }
+            });
+        }, () => {
+          this.ngxService.stop('login');
+        });
+    } else {
+      this.authRoute.userLogin(this.userDetails)
+        .subscribe(data => {
+          this.isError = false;
+          localStorage.setItem('activeUser', JSON.stringify(data.data));
+          localStorage.setItem('active', JSON.stringify({active: true}));
+          this.ngxService.stop('login');
+          this.socket.emit('validate-user');
+        }, (e) => {
+          this.ngxService.stop('login');
+          this.isError = true;
+          if (e.error !== null) {
+            if (e.error.code === 403) {
+              this.errorMessage = 'Email Or Password Incorrect.';
+            } else {
+              this.errorMessage = 'Seems Like Your Internet is not working';
+            }
           } else {
             this.errorMessage = 'Seems Like Your Internet is not working';
           }
-        } else {
-          this.errorMessage = 'Seems Like Your Internet is not working';
-        }
-      });
+        });
+    }
   }
 
   route() {
@@ -143,5 +177,25 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/auth/register']);
 
   }
+  determineAppServerKey() {
+    const publicKey = 'BKZ7q9GnaavKPUheKO8TkBHgRglEA1sYZtjs05Y45scAoTRVMelVj5qTddqTfF48V_JcxYL1scOT_WA9GyWhAes';
+    return this.urlBase64ToUint8Array(publicKey);
+  }
+
+  urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
+
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+  }
+
 
 }
