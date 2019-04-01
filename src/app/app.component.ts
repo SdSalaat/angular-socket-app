@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {SwPush, SwUpdate} from '@angular/service-worker';
-import {worker} from "cluster";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
