@@ -16,9 +16,17 @@
   align-items: center;
   padding: 15px;
   background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -webkit-linear-gradient(-135deg, #424ac8, rgba(66, 74, 200, 0.67), rgba(65, 88, 208, 0.54));
+  background: -o-linear-gradient(-135deg, #424ac8, #424AC8, rgba(66, 74, 200, 0.67));
+  background: -moz-linear-gradient(-135deg, #424ac8, #424AC8, rgba(66, 74, 200, 0.67));
+  background: linear-gradient(-180deg, rgba(61, 114, 180, 0.4), rgba(60, 107, 172, 0.5), rgba(50, 91, 146, 0.6), rgba(34, 63, 100, 0.7));
+  animation: AnimationName 3s ease-in-out infinite;
+  background-size: 400% 400%;
 }
 
+
+@keyframes AnimationName {
+  0%{background-position:84% 0%}
+  50%{background-position:17% 100%}
+  100%{background-position:84% 0%}
+}

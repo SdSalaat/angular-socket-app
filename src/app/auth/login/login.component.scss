@@ -182,12 +182,12 @@ iframe {
   font-family: Poppins-Bold;
   font-size: 24px;
   color: #333333;
-  line-height: 1.2;
+  line-height: 2.2;
   text-align: center;
 
   width: 100%;
   display: block;
-  padding-bottom: 54px;
+  padding-bottom: 10px;
 }
 
 
@@ -441,3 +441,27 @@ iframe {
   background-color: #f8d7da;
 }
 
+#image {
+  transition: ease 1s;
+  transform: rotateY(0deg);
+}
+
+#image:hover {
+  transition: all linear 1s;
+  border-radius: 100%;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  margin-left: 0px;
+  padding: 10px;
+}
+
+
+hr {
+  border: none;
+  width: 90%;
+  height: 50px;
+  margin-top: 0;
+  border-bottom: 1px solid #1f120900;
+  box-shadow: 0 20px 20px -20px #3333337a;
+  margin: -50px auto 10px;
+}

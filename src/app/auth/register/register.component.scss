@@ -39,3 +39,13 @@
 .make-link{
   text-decoration: underline;
 }
+
+hr {
+  border: none;
+  width: 90%;
+  height: 50px;
+  margin-top: 0;
+  border-bottom: 1px solid #1f120900;
+  box-shadow: 0 20px 20px -20px #3333337a;
+  margin: -50px auto 10px;
+}

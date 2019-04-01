@@ -63,13 +63,8 @@ export class UsersComponent implements OnInit {
 
 
   filterUsers() {
-    // Reset items back to all of the items
     this.initializeItems();
-
-    // set val to the value of the searchbar
     const val = this.searchValue;
-
-    // if the value is an empty string don't filter the items
     if (val && val.trim() !== '') {
       this.users = this.users.filter((item) => {
         return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
