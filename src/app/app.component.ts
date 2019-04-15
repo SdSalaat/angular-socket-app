@@ -40,7 +40,8 @@ export class AppComponent implements OnInit {
 }
 
 
-// on build line:2096 of ngsw-worker.js
+// dist/socket-Angular/ngsw-worker.js search FOR: notificationclick replace that event to this
+
 // this.scope.addEventListener('notificationclick', (event) => {
 //   event.notification.close();
 //   if (clients.openWindow && event.notification.data.url) {
