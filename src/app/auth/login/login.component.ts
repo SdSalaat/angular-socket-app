@@ -102,17 +102,20 @@ export class LoginComponent implements OnInit {
         });
         this.sharedService.setUsers(filteredUsers);
       }
+      this.ngxService.stop('');
       // noinspection JSIgnoredPromiseFromCall
       this.router.navigate(['/chats/users']);
     });
 
-
+    this.ngxService.start('');
     const activeUSer = JSON.parse(localStorage.getItem('activeUser'));
     const active = JSON.parse(localStorage.getItem('active'));
     if (activeUSer !== null && active !== null) {
       if (Object.keys(activeUSer).length > 0 && active.active === true) {
         this.socket.emit('validate-user');
       }
+    } else {
+      this.ngxService.stop('');
     }
   }
 

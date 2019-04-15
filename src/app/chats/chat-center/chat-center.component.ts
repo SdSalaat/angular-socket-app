@@ -64,6 +64,7 @@ export class ChatCenterComponent implements OnInit, AfterViewChecked {
     this.activeUser = JSON.parse(localStorage.getItem('activeUser'));
     const payload = {
       senderID: this.activeUser._id,
+      senderName: this.activeUser.name,
       receiverID: this.user._id,
       receiverEmail: this.user.email,
       message: this.message
