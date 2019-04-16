@@ -113,6 +113,8 @@ export class LoginComponent implements OnInit {
     if (activeUSer !== null && active !== null) {
       if (Object.keys(activeUSer).length > 0 && active.active === true) {
         this.socket.emit('validate-user');
+      } else {
+        this.ngxService.stop('');
       }
     } else {
       this.ngxService.stop('');
