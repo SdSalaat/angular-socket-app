@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {SwPush, SwUpdate} from '@angular/service-worker';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +15,16 @@ export class AppComponent implements OnInit {
     private router: Router,
     private swUpdate: SwUpdate,
     private swPush: SwPush,
+    private ngxLoader: NgxUiLoaderService,
   ) {}
 
   ngOnInit() {
     // noinspection JSIgnoredPromiseFromCall
     this.router.navigate(['/']);
+    this.ngxLoader.start('checker');
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
+        this.ngxLoader.stop('checker');
         if (confirm('New version available. Load New Version?')) {
           window.location.reload();
         }
