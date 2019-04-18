@@ -19,20 +19,16 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.ngxLoader.start('checker');
+    // noinspection JSIgnoredPromiseFromCall
+    this.router.navigate(['/']);
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
         this.ngxLoader.stop('checker');
         if (confirm('New version available. Load New Version?')) {
           window.location.reload();
-        } else {
-          // noinspection JSIgnoredPromiseFromCall
-          this.router.navigate(['/']);
         }
-    });
+      });
     } else {
-      // noinspection JSIgnoredPromiseFromCall
-      this.router.navigate(['/']);
       this.ngxLoader.stop('checker');
     }
 
