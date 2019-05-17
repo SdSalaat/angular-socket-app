@@ -6,6 +6,12 @@ This repository contains client side code using `Angular CLI` Framework
 ## Live Demo
 Try live demo: [https://angular-socket.000webhostapp.com](https://angular-socket.000webhostapp.com)
 
+## Features
+- Push Nitifications
+- Offline Friendly
+- Interactive ad simple UI
+- Active/Inactive Status
+
 # Support this project
 - Star GitHub repository :star:
 - Create pull requests, submit bugs or suggest new features
