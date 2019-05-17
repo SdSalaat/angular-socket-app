@@ -14,7 +14,7 @@ Try live demo: [https://angular-socket.000webhostapp.com](https://angular-socket
 ![Recording1](https://user-images.githubusercontent.com/30148680/54999703-a88cf200-4ff2-11e9-9612-af24b4438a86.gif)
 
 
-# RunningClient locally
+# Running Client locally
 ## Prerequisites
 
 First, ensure you have the following installed:
