@@ -6,6 +6,17 @@ This repository contains client side code using `Angular CLI` Framework
 ## Live Demo
 Try live demo: [https://angular-socket.000webhostapp.com](https://angular-socket.000webhostapp.com)
 
+## Run Demo Now
+<i>User One</i>
+
+<b>email</b> : john@doe.com --
+<b>password</b> : 12345
+
+<i>User two</i>
+
+<b>email</b> : adam@smith.com --
+<b>password</b> : 12345
+
 ## Features
 - Push Nitifications
 - Offline Friendly
