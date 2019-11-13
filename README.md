@@ -4,7 +4,7 @@ A Socket.io Chat Example Using Angular CLI
 This repository contains client side code using `Angular CLI` Framework
 
 ## Live Demo
-Try live demo: [https://angular-socket.000webhostapp.com](https://angular-socket.000webhostapp.com)
+Try live demo: [https://angular-socket.netlify.com](https://angular-socket.netlify.com)
 
 ## Run Demo Now
 <i>User One</i>
