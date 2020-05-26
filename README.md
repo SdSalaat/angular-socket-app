@@ -18,9 +18,9 @@ Try live demo: [https://angular-socket.netlify.com](https://angular-socket.netli
 <b>password</b> : 12345
 
 ## Features
-- Push Nitifications
+- Push Notifications
 - Offline Friendly
-- Interactive ad simple UI
+- Interactive and simple UI
 - Active/Inactive Status
 
 # Support this project
